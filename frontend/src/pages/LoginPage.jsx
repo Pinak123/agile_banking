@@ -31,7 +31,7 @@ const LoginPage = () => {
   return (
     <div className="auth-layout">
       <div className="auth-card">
-        <h2>🏦 Simple Bank</h2>
+        <h2>VIT Bankk</h2>
         <p className="muted">Login to access your account.</p>
         <form className="grid" onSubmit={handleSubmit}>
           <label>

@@ -1,5 +1,6 @@
 // API Service - Connect to real backend
-const API_URL = 'http://localhost:3000/api';
+// Uses relative URL so nginx proxy works in Docker; override via VITE_API_URL
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 // Helper to get auth headers
 const getAuthHeaders = () => {

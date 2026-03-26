@@ -47,3 +47,6 @@ coverage/
 # Misc
 *.local
 .cache/
+
+# Docker
+docker-compose.override.yml

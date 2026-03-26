@@ -29,6 +29,9 @@ const AccountPage = () => {
   const handleChange = (event) => {
     setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
+  const handleChange1 = (event) => {
+    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  };
 
   const handleDeposit = async (event) => {
     event.preventDefault();
@@ -127,7 +130,7 @@ const AccountPage = () => {
 
         <div>
           <h3>💸 Withdraw Money</h3>
-          <form className="grid" onSubmit={handleWithdraw}>
+          <form className="grid2" onSubmit={handleWithdraw}>
             <label>
               Amount ($)
               <input
@@ -136,7 +139,8 @@ const AccountPage = () => {
                 step="0.01"
                 min="0.01"
                 value={form.amount}
-                onChange={handleChange}
+                onChange={handleChange1}
+
                 placeholder="0.00"
                 required
               />
@@ -146,7 +150,7 @@ const AccountPage = () => {
               <input
                 name="description"
                 value={form.description}
-                onChange={handleChange}
+                onChange={handleChange1}
                 placeholder="e.g., Bills"
               />
             </label>

@@ -1,0 +1,5 @@
+node_modules
+.venv
+banking.db
+.env
+npm-debug.log*
