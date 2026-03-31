@@ -14,16 +14,16 @@ pipeline {
         }
 
         stage('Build Frontend') {
-            steps {
-                bat 'docker build -t %pinakss7%/agile-frontend:latest ./frontend'
-            }
-        }
+    steps {
+        bat "docker build -t pinakss7/agile-frontend:latest ./frontend"
+    }
+}
 
-        stage('Build Backend') {
-            steps {
-                bat 'docker build -t %pinakss7%/agile-backend:latest ./backend'
-            }
-        }
+stage('Build Backend') {
+    steps {
+        bat "docker build -t pinakss7/agile-backend:latest ./backend"
+    }
+}
 
         stage('Login DockerHub') {
             steps {
@@ -42,10 +42,10 @@ pipeline {
         }
 
         stage('Push Images') {
-            steps {
-                bat 'docker push %pinakss7%/agile-frontend:latest'
-                bat 'docker push %pinakss7%/agile-backend:latest'
-            }
-        }
+    steps {
+        bat "docker push pinakss7/agile-frontend:latest"
+        bat "docker push pinakss7/agile-backend:latest"
+    }
+}
     }
 }
