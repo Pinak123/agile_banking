@@ -42,10 +42,16 @@ stage('Build Backend') {
         }
 
         stage('Push Images') {
-    steps {
-        bat "docker push pinakss7/agile-frontend:latest"
-        bat "docker push pinakss7/agile-backend:latest"
-    }
-}
+            steps {
+                bat "docker push pinakss7/agile-frontend:latest"
+                bat "docker push pinakss7/agile-backend:latest"
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                bat "kubectl apply -f deployment.yaml"
+            }
+        }
     }
 }

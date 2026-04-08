@@ -1,0 +1,74 @@
+# Backend Deployment and Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agile-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agile-backend
+  template:
+    metadata:
+      labels:
+        app: agile-backend
+    spec:
+      containers:
+      - name: agile-backend
+        image: pinakss7/agile-backend:latest
+        ports:
+        - containerPort: 3001
+        env:
+        - name: DB_PATH
+          value: "/app/data/banking.db"
+        - name: JWT_SECRET
+          value: "simple-banking-secret-key-for-agile-course"
+        - name: PORT
+          value: "3001"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend # Note: Nginx proxy in frontend expects the service to be named 'backend'
+spec:
+  type: ClusterIP
+  selector:
+    app: agile-backend
+  ports:
+  - port: 3001
+    targetPort: 3001
+
+---
+# Frontend Deployment and Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agile-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: agile-frontend
+  template:
+    metadata:
+      labels:
+        app: agile-frontend
+    spec:
+      containers:
+      - name: agile-frontend
+        image: pinakss7/agile-frontend:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agile-frontend-service
+spec:
+  type: NodePort
+  selector:
+    app: agile-frontend
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30007
